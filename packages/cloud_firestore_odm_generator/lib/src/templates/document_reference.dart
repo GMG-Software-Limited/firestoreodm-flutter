@@ -83,7 +83,7 @@ class _\$${data.documentReferenceName}
     for (final field in data.updatableFields) {
       if (!field.updatable) continue;
 
-      final fieldType = field.type.getDisplayString();
+      final fieldType = field.type.getDisplayString(withNullability: true);
       if (includeFields) {
         final type = useSentinel ? 'Object?' : fieldType;
         final defaultValue = useSentinel ? ' = _sentinel' : '';
@@ -134,7 +134,7 @@ class _\$${data.documentReferenceName}
   String _setPrototype(CollectionData data) {
     if (data.updatableFields.isEmpty) return '';
 
-    final type = data.type.getDisplayString();
+    final type = data.type.getDisplayString(withNullability: true);
     final parameters = _parameters(data, includeFields: false);
 
     const fieldValueDoc = '''
@@ -186,7 +186,7 @@ void batchSet(
   String _set(CollectionData data) {
     if (data.updatableFields.isEmpty) return '';
 
-    final type = data.type.getDisplayString();
+    final type = data.type.getDisplayString(withNullability: true);
     final parameters = _parameters(
       data,
       includeFields: false,
